@@ -56,11 +56,16 @@ const travelBuilder = {
         placeLabel.setAttribute("for", "countries")
         placeLabel.setAttribute("id", "place")
 
-        placeField.appendChild(placeLabel)
-        placeLabel.appendChild(new Option("Italy", "Italy"));
-        placeLabel.appendChild(new Option("Switzerland", "Switzerland"));
-        placeLabel.appendChild(new Option("France", "France"));
+        travelerCollection.getAllTravel()
+        .then(places => {
+            places.forEach(place => {
+             placeLabel.appendChild(new Option(place.name, place.id));
+        })
 
+    })
+      // placeLabel.appendChild(new Option("Switzerland", "Switzerland"));
+        // placeLabel.appendChild(new Option("France", "France"));
+        placeField.appendChild(placeLabel)
         let submitButton = document.createElement("button")
         submitButton.textContent = "Add Travel"
         submitButton.setAttribute("class", "travel-save")
@@ -85,13 +90,14 @@ const travelBuilder = {
         let inputTravelCost = document.querySelector("#cost").value
         let inputTravelPlace = document.querySelector("#place").value
 
-        console.log(inputTravelDescription)
+
+        console.log(inputTravelPlace, "hey")
 
         let newTravel = {
             name: inputName,
             description: inputTravelDescription,
             cost: inputTravelCost,
-            place: inputTravelPlace
+            placeId: inputTravelPlace
         }
         travelerCollection.postAllTravels(newTravel)
     .then(response => {

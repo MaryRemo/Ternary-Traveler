@@ -1,7 +1,11 @@
 const travelerCollection = {
 
     getAllTravels (){
-        return fetch("http://localhost:8088/interests")
+        return fetch("http://localhost:8088/interests?_expand=place")
+        .then(response => response.json())
+    },
+    getAllTravel (){
+        return fetch("http://localhost:8088/places")
         .then(response => response.json())
     },
     postAllTravels(travelToSave){
@@ -13,8 +17,8 @@ const travelerCollection = {
         body: JSON.stringify(travelToSave)
     })
   },
-  deleteTravels(travelId){
-    return fetch(`http://localhost:8088/interests/${travelId}`, {
+  deleteTravels(eventlId){
+    return fetch(`http://localhost:8088/interests/${eventlId}`, {
      method: "DELETE",
      headers: {
        "Content-Type": "application/json"
@@ -22,12 +26,12 @@ const travelerCollection = {
   })
  },
 
-    getTravel(travelId){
-        return fetch(`http://localhost:8088/interests/${travelId}`)
+    getTravel(eventlId){
+        return fetch(`http://localhost:8088/interests/${eventlId}`)
         .then(response => response.json())
     },
-    editTravels(travelId, eventToEdit) {
-        return fetch(`http://localhost:8088/interests/${travelId}`, {
+    editTravels(eventlId, eventToEdit) {
+        return fetch(`http://localhost:8088/interests/${eventlId}`, {
             method: "PUT",
             headers: {
             "Content-Type": "application/json"

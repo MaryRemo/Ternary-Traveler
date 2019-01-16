@@ -27,9 +27,9 @@ const createTravels = {
         editButton.addEventListener("click", () => {
         let articleID = event.target.id
         console.log(articleID)
-        let eventId = articleID.split("--")[1]
-        console.log(eventId)
-    travelerCollection.getTravel(eventId)
+        let travelEditId = articleID.split("--")[1]
+        console.log(travelEditId)
+    travelerCollection.getTravel(travelEditId)
     .then(response => {
         editForm.createEditForm(response)
         })
@@ -40,8 +40,9 @@ const createTravels = {
         deleteButton.setAttribute("id", `deleteEvent--${travelObject.id}`)
         deleteButton.addEventListener("click", () => {
             console.log(event)
-            let travelId = event.target.id.split("--")[1]
-            travelerCollection.deleteTravels(travelId)
+            alert("Are you sure you want to delete?")
+            let deleteTravelId = event.target.id.split("--")[1]
+            travelerCollection.deleteTravels(deleteTravelId)
     .then(response => {
            travelerList.listing()
            console.log(response)

@@ -27,7 +27,10 @@ const editForm = {
         updateButton.addEventListener("click", () => {
             let editedEvents = {
                 cost: travelNameInput.value,
-                review: travelReviewInput.value
+                review: travelReviewInput.value,
+                name: travelToEdit.name,
+                description: travelToEdit.description,
+                placeId: travelToEdit.placeId
             }
             travelerCollection.editTravels(travelToEdit.id, editedEvents)
             .then(response => {
